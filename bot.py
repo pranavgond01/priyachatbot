@@ -11,19 +11,24 @@ from flask import Flask
 import threading
 
 
-# Dummy Web Server Render ke Free Plan ke liye
+import os
+from flask import Flask
+import threading
+
+# Flask Web Server Render ke Free Plan ke liye
 app = Flask('')
 
 @app.route('/')
 def home():
-    return "Priya Bot is Live and Ready!"
+    return "Priya Bot is Live and Healthy!"
 
 def run_flask():
-    app.run(host='0.0.0.0', port=8080)
+    # Render jo port dega, usko automatically uthayega
+    port = int(os.environ.get("PORT", 8080))
+    app.run(host='0.0.0.0', port=port)
 
-# Flask ko background thread me chalayein
+# Background thread me Flask chalayein
 threading.Thread(target=run_flask).start()
-
 # -------------------------------------------------------------
 # 1. SETUP & CONFIGURATION
 # -------------------------------------------------------------
