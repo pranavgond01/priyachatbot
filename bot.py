@@ -7,6 +7,22 @@ import discord
 from discord.ext import commands
 from groq import Groq
 from dotenv import load_dotenv
+from flask import Flask
+import threading
+
+
+# Dummy Web Server Render ke Free Plan ke liye
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Priya Bot is Live and Ready!"
+
+def run_flask():
+    app.run(host='0.0.0.0', port=8080)
+
+# Flask ko background thread me chalayein
+threading.Thread(target=run_flask).start()
 
 # -------------------------------------------------------------
 # 1. SETUP & CONFIGURATION
